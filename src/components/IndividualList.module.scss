@@ -1,0 +1,88 @@
+.taskTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: system-ui, sans-serif;
+  font-size: 0.95rem;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 0.5fr;
+  padding: 12px 16px;
+  font-weight: 600;
+  color: #444;
+  border-bottom: 1px solid #eee;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 0.5fr;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f2f2f2;
+
+  &:hover {
+    background: #fafafa;
+  }
+}
+
+.titleCol {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  input {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.inprogress {
+  background: #e6f0ff;
+  color: #2f6de0;
+}
+
+.completed {
+  background: #d6f5d6;
+  color: #1f9d3a;
+}
+
+.high {
+  background: #ffe8e0;
+  color: #e65a2b;
+}
+
+.medium {
+  background: #fff6d6;
+  color: #d4a200;
+}
+
+.low {
+  background: #e8f7ff;
+  color: #0077b6;
+}
+
+.actionIcon {
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #555;
+  padding: 6px;
+
+  &:hover {
+    background: #f2f2f2;
+    border-radius: 50%;
+  }
+}

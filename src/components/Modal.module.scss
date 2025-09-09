@@ -1,0 +1,67 @@
+.cTaskbtn {
+  color: white !important;
+  background: green !important;
+  border: none !important;
+  padding: 6px 14px;
+  border-radius: 6px;
+}
+
+.modal {
+  .ant-modal-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  .subtitle {
+    margin-top: 4px;
+    margin-bottom: 14px;
+    color: #666;
+    font-size: 0.95rem;
+  }
+
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+
+    label {
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    input {
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+      font-size: 0.95rem;
+
+      &:focus {
+        border-color: #3aa655;
+        box-shadow: 0 0 0 1px #3aa655;
+      }
+    }
+  }
+
+  .row {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+
+    .formGroup {
+      flex: 1;
+    }
+  }
+
+  .saveBtn {
+    margin-top: 20px;
+    background: #3aa655 !important;
+    color: white !important;
+    height: 38px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 6px;
+    border: none !important;
+  }
+}
