@@ -53,26 +53,31 @@
 .inprogress {
   background: #e6f0ff;
   color: #2f6de0;
+  width: fit-content;
 }
 
 .completed {
   background: #d6f5d6;
   color: #1f9d3a;
+  width: fit-content;
 }
 
 .high {
   background: #ffe8e0;
   color: #e65a2b;
+  width: fit-content;
 }
 
 .medium {
   background: #fff6d6;
   color: #d4a200;
+  width: fit-content;
 }
 
 .low {
   background: #e8f7ff;
   color: #0077b6;
+  width: fit-content;
 }
 
 .actionIcon {
@@ -80,6 +85,7 @@
   cursor: pointer;
   color: #555;
   padding: 6px;
+  width: fit-content;
 
   &:hover {
     background: #f2f2f2;

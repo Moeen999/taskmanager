@@ -2,8 +2,7 @@
 import { useEffect, useState } from "react";
 import { getPostsData, createTask } from "../api/postsData";
 import { Header } from "./Header";
-import { TaskList } from "./TaskList";
-
+import {TaskList} from "./TaskList"
 export const DataProvider = () => {
   const [tasks, setTasks] = useState([]);
 

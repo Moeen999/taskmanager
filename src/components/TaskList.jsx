@@ -4,18 +4,28 @@ import { IoIosList } from "react-icons/io";
 import { PiKanban } from "react-icons/pi";
 import { CiSearch, CiFilter } from "react-icons/ci";
 import { ListItem } from "./IndividualList";
+import { KanbanBoard } from "./Kanban";
 
-export const TaskList = ({tasks}) => {
+
+export const TaskList = ({ tasks, setTasks }) => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [view, setView] = useState("list");
 
   return (
     <section className={styles.taskList}>
       <div className={styles.viewBtn}>
-        <button>
+        <button
+          onClick={() => setView("list")}
+          className={view === "list" ? styles.active : ""}
+        >
           <IoIosList />
           List View
         </button>
-        <button >
+
+        <button
+          onClick={() => setView("kanban")}
+          className={view === "kanban" ? styles.active : ""}
+        >
           <PiKanban />
           Kanban View
         </button>
@@ -30,7 +40,6 @@ export const TaskList = ({tasks}) => {
           placeholder="Search tasks..."
         />
 
-         {/* pehla filter button */}
         <div className={styles.filterWrapper}>
           <button
             className={styles.filterBtn}
@@ -56,7 +65,11 @@ export const TaskList = ({tasks}) => {
         </button>
       </div>
 
-      <ListItem tasks={tasks}/>
+      {view === "list" ? (
+        <ListItem tasks={tasks} />
+      ) : (
+        <KanbanBoard tasks={tasks} setTasks={setTasks} />
+      )}
     </section>
   );
 };

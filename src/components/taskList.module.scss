@@ -1,4 +1,8 @@
-
+ .active {
+    background-color: #242424;
+    border: 1px solid black;
+    color: rgb(75, 60, 60);
+  }
 .taskList {
   height: 80vh;
   width: 100vw;
@@ -6,8 +10,7 @@
   flex-direction: column;
   gap: 1.2rem;
   padding: 1.8rem;
-  // background: #e9e7e7;
-
+ 
   .viewBtn {
     background: #ddd;
     width: fit-content;
@@ -32,11 +35,6 @@
       &:hover {
         background: #ccc;
       }
-
-      &:disabled {
-        cursor: not-allowed;
-        opacity: 0.6;
-      }
     }
   }
 
@@ -47,17 +45,17 @@
 
     .searchIcon {
       position: absolute;
-      top: 7px;
-      left: 8px;
+      top: 8px;
+      left: 10px;
       font-size: 1.1rem;
       color: #555;
     }
 
     .input {
-      padding: 8px 24px;
+      padding: 8px 30px;
       outline: none;
       width: 20rem;
-      border: none;
+      border: 1px solid rgb(147, 142, 141);
       border-radius: 4px;
       font-size: 0.9rem;
     }

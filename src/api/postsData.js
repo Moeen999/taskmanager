@@ -20,11 +20,25 @@ export const getPostsData = async () => {
 export const createTask = async (task) => {
   try {
     const { data, status } = await api.post("/tasks", task);
-    
+
     if (status === 200) {
       return data;
     }
   } catch (error) {
     console.error("Post error:", error);
+  }
+};
+
+
+
+// ! data update with the help of id
+export const updateTask = async (id, updates) => {
+  try {
+    const { data, status } = await api.patch(`/tasks/${id}`, updates);
+    if (status === 200) {
+      return data;
+    }
+  } catch (error) {
+    console.error("Update error:", error);
   }
 };

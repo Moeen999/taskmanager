@@ -81,7 +81,7 @@ export const InputModal = ({ onSave }) => {
           className={styles.saveBtn}
           onClick={handleSave}
           block
-          loading={saving} // antd shows spinner
+          loading={saving} 
         >
           Save
         </Button>
