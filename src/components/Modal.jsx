@@ -2,14 +2,24 @@ import { useState } from "react";
 import { Button, Modal, Select } from "antd";
 import styles from "./Modal.module.scss";
 
-export const InputModal = () => {
+export const InputModal = ({ onSave }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [title, setTitle] = useState("");
+  const [status, setStatus] = useState("Not Started");
+  const [priority, setPriority] = useState("None");
+  const [saving, setSaving] = useState(false); 
 
   const showModal = () => setIsModalOpen(true);
   const handleCancel = () => setIsModalOpen(false);
-  const handleSave = () => {
+
+  const handleSave = async () => {
+    setSaving(true); 
+    await onSave({ title, status, priority }); 
+    setSaving(false); 
     setIsModalOpen(false);
-    console.log("I will send the data to api and will be displayed on the screen")
+    setTitle("");
+    setStatus("Not Started");
+    setPriority("None");
   };
 
   return (
@@ -29,14 +39,21 @@ export const InputModal = () => {
 
         <div className={styles.formGroup}>
           <label htmlFor="title">Title</label>
-          <input id="title" type="text" placeholder="Enter task title" />
+          <input
+            id="title"
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Enter task title"
+          />
         </div>
 
         <div className={styles.row}>
           <div className={styles.formGroup}>
             <label>Status</label>
             <Select
-              defaultValue="Not Started"
+              value={status}
+              onChange={setStatus}
               options={[
                 { value: "Not Started", label: "Not Started" },
                 { value: "In Progress", label: "In Progress" },
@@ -48,7 +65,8 @@ export const InputModal = () => {
           <div className={styles.formGroup}>
             <label>Priority</label>
             <Select
-              defaultValue="None"
+              value={priority}
+              onChange={setPriority}
               options={[
                 { value: "None", label: "None" },
                 { value: "Low", label: "Low" },
@@ -59,12 +77,15 @@ export const InputModal = () => {
           </div>
         </div>
 
-        <Button className={styles.saveBtn} onClick={handleSave} block>
+        <Button
+          className={styles.saveBtn}
+          onClick={handleSave}
+          block
+          loading={saving} // antd shows spinner
+        >
           Save
         </Button>
       </Modal>
     </div>
   );
 };
-
-

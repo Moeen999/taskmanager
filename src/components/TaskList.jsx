@@ -5,7 +5,7 @@ import { PiKanban } from "react-icons/pi";
 import { CiSearch, CiFilter } from "react-icons/ci";
 import { ListItem } from "./IndividualList";
 
-export const TaskList = () => {
+export const TaskList = ({tasks}) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   return (
@@ -15,7 +15,7 @@ export const TaskList = () => {
           <IoIosList />
           List View
         </button>
-        <button disabled>
+        <button >
           <PiKanban />
           Kanban View
         </button>
@@ -30,7 +30,7 @@ export const TaskList = () => {
           placeholder="Search tasks..."
         />
 
-        {/* First filter button */}
+         {/* pehla filter button */}
         <div className={styles.filterWrapper}>
           <button
             className={styles.filterBtn}
@@ -56,8 +56,7 @@ export const TaskList = () => {
         </button>
       </div>
 
-      {/* Individual List Data */}
-      <ListItem />
+      <ListItem tasks={tasks}/>
     </section>
   );
 };
