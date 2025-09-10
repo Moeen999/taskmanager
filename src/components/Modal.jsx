@@ -72,6 +72,7 @@ export const InputModal = ({ onSave }) => {
                 { value: "Low", label: "Low" },
                 { value: "Medium", label: "Medium" },
                 { value: "High", label: "High" },
+                { value: "Urgent", label: "Urgent" },
               ]}
             />
           </div>

@@ -78,17 +78,27 @@
   }
 
   .not_started {
-    background: #fef3c7;
-    color: #e17938;
+    background: #ac393f;
+    border-radius: 12px;
+    font-weight: lighter;
+    padding: 2px 9px;
+    color: #e8dcd4;
   }
 
   .in_progress {
-    background: #dbeafe;
-    color: #1e40af;
+    background: #2561b0;
+    color: #dadee9;
+     border-radius: 12px;
+    padding: 2px 9px;
+    font-weight: lighter;
+
   }
 
   .completed {
-    background: #dcfce7;
-    color: #166534;
+    background: #498a5f;
+    color: #fcfcfc;
+    border-radius: 12px;
+    padding: 2px 9px;
+    font-weight: lighter;
   }
 }

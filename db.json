@@ -1,76 +1,34 @@
 {
   "tasks": [
     {
-      "id": "3996",
-      "title": "hello world",
-      "status": "Completed",
-      "priority": "Urgent"
-    },
-    {
-      "id": "5312",
-      "title": "html",
-      "status": "Completed",
-      "priority": "Medium"
-    },
-    {
-      "id": "db67",
-      "title": "js",
-      "status": "Completed",
+      "id": "9457",
+      "title": "Beta",
+      "status": "In Progress",
       "priority": "High"
     },
     {
-      "id": "6ace",
-      "title": "coding",
-      "status": "Completed",
-      "priority": "Low"
+      "id": "dab5",
+      "title": "Charlie",
+      "status": "In Progress",
+      "priority": "High"
     },
     {
-      "id": "a7a9",
-      "title": "hello dunya",
-      "status": "Completed",
-      "priority": "Medium"
-    },
-    {
-      "id": "518e",
-      "title": "coding",
+      "id": "0160",
+      "title": "Penta",
       "status": "In Progress",
       "priority": "Low"
     },
     {
-      "id": "8b31",
-      "title": "kfhjk",
-      "status": "Completed",
-      "priority": "Urgent"
-    },
-    {
-      "id": "683a",
-      "title": "klkjlkj",
-      "status": "Completed",
-      "priority": "None"
-    },
-    {
-      "id": "7a48",
-      "title": "test Input",
-      "status": "Not Started",
-      "priority": "None"
-    },
-    {
-      "id": "b606",
-      "title": "Islam",
+      "id": "5413",
+      "title": "Octa",
       "status": "In Progress",
-      "priority": "Urgent"
+      "priority": "None"
     },
     {
-      "id": "893b",
-      "title": "markUP",
+      "id": "1ae3",
+      "title": "New One",
       "status": "Not Started",
-      "priority": "Urgent"
-    },
-    {
-      "id": "a2be",
-      "title": "test check",
-      "status": "Completed",
-      "priority": "High"
+      "priority": "Low"
     }
   ]
 }

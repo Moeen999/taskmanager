@@ -1,15 +1,57 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./taskList.module.scss";
 import { IoIosList } from "react-icons/io";
 import { PiKanban } from "react-icons/pi";
 import { CiSearch, CiFilter } from "react-icons/ci";
 import { ListItem } from "./IndividualList";
 import { KanbanBoard } from "./Kanban";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { Loader } from "./Loader";
+import { deleteTask } from "../api/postsData";
 
-
-export const TaskList = ({ tasks, setTasks }) => {
-  const [showDropdown, setShowDropdown] = useState(false);
+export const TaskList = ({
+  tasks,
+  setTasks,
+  selectedTasks,
+  setSelectedTasks,
+}) => {
+  const [filterData, setFilterData] = useState("");
+  const [showStatusDropdown, setShowStatusDropdown] = useState(false);
+  const [showPriorityDropdown, setShowPriorityDropdown] = useState(false);
   const [view, setView] = useState("list");
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [filterStatus, setFilterStatus] = useState("All");
+  const [filterPriority, setFilterPriority] = useState("All");
+
+  const filteredTasks = tasks.filter((task) => {
+    const matchesSearch = task.title
+      .toLowerCase()
+      .includes(filterData.toLowerCase());
+    const matchesStatus =
+      filterStatus === "All" || task.status === filterStatus;
+    const matchesPriority =
+      filterPriority === "All" || task.priority === filterPriority;
+
+    return matchesSearch && matchesStatus && matchesPriority;
+  });
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteTask(id);
+      setTasks((prev) => prev.filter((task) => task.id !== id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section className={styles.taskList}>
@@ -38,19 +80,30 @@ export const TaskList = ({ tasks, setTasks }) => {
           type="text"
           name="task"
           placeholder="Search tasks..."
+          value={filterData}
+          onChange={(e) => setFilterData(e.target.value)}
         />
+      </div>
 
+      <div className={styles.dropdownBtns}>
         <div className={styles.filterWrapper}>
           <button
             className={styles.filterBtn}
-            onClick={() => setShowDropdown((prev) => !prev)}
+            onClick={() => {
+              setShowStatusDropdown((prev) => !prev);
+              setShowPriorityDropdown(false);
+            }}
           >
             <CiFilter />
-            Filter
+            Status
           </button>
-          {showDropdown && (
+          {showStatusDropdown && (
             <div className={styles.dropdown}>
-              <select>
+              <select
+                value={filterStatus}
+                onChange={(e) => setFilterStatus(e.target.value)}
+              >
+                <option value="All">All</option>
                 <option value="Not Started">Not Started</option>
                 <option value="In Progress">In Progress</option>
                 <option value="Completed">Completed</option>
@@ -59,16 +112,47 @@ export const TaskList = ({ tasks, setTasks }) => {
           )}
         </div>
 
-        <button className={styles.filterBtn}>
-          <CiFilter />
-          Filter
-        </button>
+        <div className={styles.filterWrapper}>
+          <button
+            className={styles.filterBtn}
+            onClick={() => {
+              setShowPriorityDropdown((prev) => !prev);
+              setShowStatusDropdown(false);
+            }}
+          >
+            <CiFilter />
+            Priority
+          </button>
+          {showPriorityDropdown && (
+            <div className={styles.dropdown}>
+              <select
+                value={filterPriority}
+                onChange={(e) => setFilterPriority(e.target.value)}
+              >
+                <option value="All">All</option>
+                <option value="High">High</option>
+                <option value="Urgent">Urgent</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              </select>
+            </div>
+          )}
+        </div>
       </div>
 
-      {view === "list" ? (
-        <ListItem tasks={tasks} />
+      {isLoading ? (
+        <Loader />
+      ) : view === "list" ? (
+        <ListItem
+          tasks={filteredTasks}
+          selectedTasks={selectedTasks}
+          setSelectedTasks={setSelectedTasks}
+          ondelete={handleDelete}
+        />
       ) : (
-        <KanbanBoard tasks={tasks} setTasks={setTasks} />
+        <DndProvider backend={HTML5Backend}>
+          <KanbanBoard tasks={filteredTasks} setTasks={setTasks} />
+        </DndProvider>
       )}
     </section>
   );

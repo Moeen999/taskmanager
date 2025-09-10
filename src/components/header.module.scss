@@ -27,6 +27,10 @@
     padding: 0.6rem;
     border-radius: 50%;
     cursor: pointer;
+    &:active{
+      background-color: orangered;
+      color: white;
+    }
   }
   .addTask{
     background-color: green;

@@ -62,22 +62,46 @@
   width: fit-content;
 }
 
+.none {
+  background: #171616;
+  color: #ebe7e7;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .high {
-  background: #ffe8e0;
-  color: #e65a2b;
-  width: fit-content;
+  background: #f06e43;
+  color: #393737;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .medium {
-  background: #fff6d6;
-  color: #d4a200;
-  width: fit-content;
+  background: #d4aa11;
+  color: #1f1e1e;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
+.urgent{
+  background: #d61626;
+  color: #e2dbdb;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .low {
   background: #e8f7ff;
   color: #0077b6;
-  width: fit-content;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .actionIcon {
