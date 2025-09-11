@@ -53,26 +53,55 @@
 .inprogress {
   background: #e6f0ff;
   color: #2f6de0;
+  width: fit-content;
 }
 
 .completed {
   background: #d6f5d6;
   color: #1f9d3a;
+  width: fit-content;
 }
 
+.none {
+  background: #171616;
+  color: #ebe7e7;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .high {
-  background: #ffe8e0;
-  color: #e65a2b;
+  background: #f06e43;
+  color: #393737;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .medium {
-  background: #fff6d6;
-  color: #d4a200;
+  background: #d4aa11;
+  color: #1f1e1e;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
+.urgent{
+  background: #d61626;
+  color: #e2dbdb;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .low {
   background: #e8f7ff;
   color: #0077b6;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .actionIcon {
@@ -80,6 +109,7 @@
   cursor: pointer;
   color: #555;
   padding: 6px;
+  width: fit-content;
 
   &:hover {
     background: #f2f2f2;

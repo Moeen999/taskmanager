@@ -1,58 +1,88 @@
-import { useEffect, useState } from "react";
-import { getPostsData } from "../api/postsData";
 import styles from "./IndividualList.module.scss";
-import { Dropdown, Menu } from "antd";
-import { MoreOutlined } from "@ant-design/icons";
+import { Dropdown } from "antd";
+import { EllipsisOutlined } from "@ant-design/icons";
 import { TbArrowsMoveVertical } from "react-icons/tb";
 import { HiArrowSmUp } from "react-icons/hi";
+import { useState } from "react";
 
-export const ListItem = () => {
-  const [tasks, setTasks] = useState([]);
+export const ListItem = ({
+  tasks,
+  selectedTasks,
+  setSelectedTasks,
+  ondelete,
+}) => {
   const [activeColumn, setActiveColumn] = useState(null);
+  const [individualClick, setIndividualClick] = useState(false);
+
+  const handleIndividualClick = () => {
+    setIndividualClick(!individualClick);
+  };
 
   const handleIconChange = (id) => {
     setActiveColumn((prev) => (prev === id ? null : id));
   };
-  useEffect(() => {
-    const getData = async () => {
-      const data = await getPostsData();
-      setTasks(data);
-    };
-    getData();
-  }, []);
 
-  const menu = (
-    <Menu
-      items={[
-        { key: "1", label: "Edit" },
-        { key: "2", label: "Delete" },
-      ]}
-    />
-  );
+  const getMenuItems = (id) => [
+    { key: "edit", label: "Edit", onClick: () => console.log("Edit:", id) },
+    {
+      key: "delete",
+      label: "Delete",
+      onClick: () => ondelete(id),
+    },
+  ];
+
+  const handleCheckboxChange = (id, checked) => {
+    if (checked) {
+      setSelectedTasks((prev) => [...prev, id]);
+    } else {
+      setSelectedTasks((prev) => prev.filter((taskId) => taskId !== id));
+    }
+  };
 
   return (
     <section className={styles.taskTable}>
       <div className={styles.tableHeader}>
         <div>
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            checked={selectedTasks.length === tasks.length && tasks.length > 0}
+            onChange={(e) => {
+              if (e.target.checked) {
+                setSelectedTasks(tasks.map((t) => t.id)); 
+              } else {
+                setSelectedTasks([]); 
+              }
+            }}
+          />
+          <span onClick={handleIndividualClick}>
+            Title
+            {individualClick ? <HiArrowSmUp /> : <TbArrowsMoveVertical />}
+          </span>
         </div>
+
         {[
-          { id: 1, title: "Title" },
-          { id: 2, title: "Status" },
-          { id: 3, title: "Privacy" },
-          { id: 4, title: "Actions" },
+          { id: 1, title: "Status" },
+          { id: 2, title: "Priority" },
         ].map(({ id, title }) => (
           <span key={id} onClick={() => handleIconChange(id)}>
             {title}
             {activeColumn === id ? <HiArrowSmUp /> : <TbArrowsMoveVertical />}
           </span>
         ))}
+
+        <span>Actions</span>
       </div>
 
       {tasks?.map((currTask) => (
         <div key={currTask.id} className={styles.tableRow}>
           <div className={styles.titleCol}>
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              checked={selectedTasks.includes(currTask.id)}
+              onChange={(e) =>
+                handleCheckboxChange(currTask.id, e.target.checked)
+              }
+            />
             <span>{currTask.title}</span>
           </div>
 
@@ -72,14 +102,21 @@ export const ListItem = () => {
                 ? styles.high
                 : currTask.priority === "Medium"
                 ? styles.medium
+                : currTask.priority === "Urgent"
+                ? styles.urgent
+                : currTask.priority === "None"
+                ? styles.none
                 : styles.low
             }`}
           >
             {currTask.priority}
           </span>
 
-          <Dropdown overlay={menu} trigger={["click"]}>
-            <MoreOutlined className={styles.actionIcon} />
+          <Dropdown
+            menu={{ items: getMenuItems(currTask.id) }}
+            trigger={["click"]}
+          >
+            <EllipsisOutlined className={styles.actionIcon} />
           </Dropdown>
         </div>
       ))}
