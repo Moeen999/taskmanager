@@ -15,7 +15,10 @@ export const Header = ({ onSave, onDelete }) => {
         <span>Manage all tasks.</span>
       </div>
       <div className={styles.h_right}>
-        <RiDeleteBin6Line className={styles.delIcon} onClick={()=>onDelete()} />
+        <RiDeleteBin6Line
+          className={styles.delIcon}
+          onClick={() => onDelete()}
+        />
         <button className={styles.seebtn}>
           <MdInfoOutline /> Seed Tasks
         </button>

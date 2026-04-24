@@ -5,7 +5,6 @@ const api = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-//! test get req
 
 export const getPostsData = async () => {
   try {
@@ -16,7 +15,6 @@ export const getPostsData = async () => {
   }
 };
 
-//! post data Modal ka data yahan ayga
 export const createTask = async (task) => {
   try {
     const { data, status } = await api.post("/tasks", task);
@@ -30,7 +28,6 @@ export const createTask = async (task) => {
   }
 };
 
-// ! data update with the help of id
 export const updateTask = async (id, priorityData) => {
   try {
     const { data, status } = await api.patch(`/tasks/${id}`, priorityData);
@@ -42,7 +39,6 @@ export const updateTask = async (id, priorityData) => {
   }
 };
 
-// ! delete data using unique ID
 
 export const deleteTask = async (id) => {
   try {

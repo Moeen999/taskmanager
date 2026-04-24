@@ -48,7 +48,7 @@ const KanbanColumn = ({ level, tasks, setTasks }) => {
   const [, dropRef] = useDrop(() => ({
     accept: ItemTypes.TASK,
     drop: async (item) => {
-      if (item.priority === level) return; 
+      if (item.priority === level) return;
 
       try {
         const updatedTask = await updateTask(item.id, { priority: level });
